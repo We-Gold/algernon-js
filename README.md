@@ -12,4 +12,5 @@ Algernon is a JS library for efficiently generating, solving, and rendering maze
 -   [ ] Add ant algorithm
 -   [ ] Optimize algorithms
 -   [ ] Create headless version
--   [ ] Generate typescript index.d.ts
+-   [x] Generate typescript index.d.ts
+-   [ ] Add tests with vitest
