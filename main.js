@@ -3,6 +3,8 @@ import {
 	generateMazeKruskal,
 	solveAStar,
 	renderMazeToCanvas,
+	convertRawToNodeMatrix,
+	convertRawToNodeGraph,
 } from "./lib"
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -39,5 +41,18 @@ document.addEventListener("DOMContentLoaded", () => {
 	endTime = performance.now()
 
 	console.log(`Render: ${endTime - startTime}ms`)
-})
 
+	startTime = performance.now()
+	const nodeMatrix = convertRawToNodeMatrix(finalMaze)
+	endTime = performance.now()
+
+	console.log(`Node Matrix Conversion: ${endTime - startTime}ms`)
+
+	startTime = performance.now()
+	const nodeGraph = convertRawToNodeGraph(finalMaze, [0, 0])
+	endTime = performance.now()
+
+	console.log(nodeGraph)
+
+	console.log(`Node Graph Conversion: ${endTime - startTime}ms`)
+})
