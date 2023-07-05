@@ -1,0 +1,51 @@
+{
+	"name": "algernon-js",
+	"author": "Weaver Goldman <we.goldm@gmail.com>",
+	"description": "Algernon is a JS library for efficiently generating, solving, and rendering mazes.",
+	"version": "0.1.0",
+	"type": "module",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/We-Gold/algernon-js"
+	},
+	"bugs": {
+		"url": "https://github.com/We-Gold/algernon-js/issues"
+	},
+	"keywords": [
+		"maze",
+		"javascript",
+		"maze-generation",
+		"maze-solver",
+		"p5.js",
+		"html-canvas",
+		"a-star"
+	],
+	"files": [
+		"dist"
+	],
+	"main": "./dist/algernon.umd.cjs",
+	"module": "./dist/algernon.js",
+	"exports": {
+		".": {
+			"import": "./dist/algernon.js",
+			"require": "./dist/algernon.umd.cjs"
+		}
+	},
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"pack-test": "npm pack --dry-run"
+	},
+	"devDependencies": {
+		"vite": "^4.3.9"
+	},
+	"prettier": {
+		"trailingComma": "es5",
+		"tabWidth": 4,
+		"semi": false,
+		"useTabs": true
+	}
+}
+
