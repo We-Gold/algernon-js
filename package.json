@@ -35,13 +35,18 @@
 	},
 	"scripts": {
 		"dev": "vite",
+		"test": "vitest",
 		"build": "vite build && npx tsc",
 		"preview": "vite preview",
-		"pack-test": "npm pack --dry-run"
+		"pack-test": "npm pack --dry-run",
+		"generate-docs": "jsdoc --configure jsdoc.json --verbose"
 	},
 	"devDependencies": {
+		"clean-jsdoc-theme": "^4.2.9",
+		"jsdoc": "^4.0.2",
 		"typescript": "^5.1.6",
-		"vite": "^4.3.9"
+		"vite": "^4.3.9",
+		"vitest": "^0.32.4"
 	},
 	"prettier": {
 		"trailingComma": "es5",

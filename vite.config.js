@@ -9,5 +9,8 @@ export default defineConfig({
             name: 'algernon',
             fileName: 'algernon',
         }
+    },
+    test: {
+        globals: true
     }
 })

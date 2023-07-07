@@ -49,10 +49,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	console.log(`Node Matrix Conversion: ${endTime - startTime}ms`)
 
 	startTime = performance.now()
-	const nodeGraph = convertRawToNodeGraph(finalMaze, [0, 0])
+	const nodeGraph = convertRawToNodeGraph(finalMaze, [0, 0], [19, 19])
 	endTime = performance.now()
-
-	console.log(nodeGraph)
 
 	console.log(`Node Graph Conversion: ${endTime - startTime}ms`)
 })
