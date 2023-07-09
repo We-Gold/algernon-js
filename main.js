@@ -5,6 +5,7 @@ import {
 	renderMazeToCanvas,
 	convertRawToNodeMatrix,
 	convertRawToNodeGraph,
+	generateMazeGrowingTree,
 } from "./lib"
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -25,7 +26,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	console.log(`Backtracking: ${endTime - startTime}ms`)
 
-	const finalMaze = backtrackMaze
+	startTime = performance.now()
+	const growingTreeMaze = generateMazeGrowingTree(rows, cols)
+	endTime = performance.now()
+
+	console.log(`Growing Tree: ${endTime - startTime}ms`)
+
+	const finalMaze = growingTreeMaze
 
 	// When solving, the hypot (default) heurisitic works well for
 	// backtracking generated mazes, but the grid heuristic works

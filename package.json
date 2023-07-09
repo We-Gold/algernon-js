@@ -2,7 +2,7 @@
 	"name": "algernon-js",
 	"author": "Weaver Goldman <we.goldm@gmail.com>",
 	"description": "Algernon is a JS library for efficiently generating, solving, and rendering mazes.",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"type": "module",
 	"license": "MIT",
 	"repository": {
@@ -38,12 +38,9 @@
 		"test": "vitest",
 		"build": "vite build && npx tsc",
 		"preview": "vite preview",
-		"pack-test": "npm pack --dry-run",
-		"generate-docs": "jsdoc --configure jsdoc.json --verbose"
+		"pack-test": "npm pack --dry-run"
 	},
 	"devDependencies": {
-		"clean-jsdoc-theme": "^4.2.9",
-		"jsdoc": "^4.0.2",
 		"typescript": "^5.1.6",
 		"vite": "^4.3.9",
 		"vitest": "^0.32.4"

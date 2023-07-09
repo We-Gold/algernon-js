@@ -1,8 +1,9 @@
-import { generateMazeBacktracking, generateMazeKruskal, solveAStar } from "../lib"
+import { generateMazeBacktracking, generateMazeGrowingTree, generateMazeKruskal, solveAStar } from "../lib"
 
 const generators = {
     "Backtracking": generateMazeBacktracking,
-    "Kruskal": generateMazeKruskal
+    "Kruskal": generateMazeKruskal,
+    "Growing Tree": generateMazeGrowingTree
 }
 
 test.each(Object.entries(generators))("%s maze has correct dimensions", (name, method) => {
