@@ -1,3 +1,8 @@
+[![npm version](https://badge.fury.io/js/algernon-js.svg)](https://badge.fury.io/js/algernon-js)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/We-Gold/algernon-js/issues)
+![tests](https://github.com/We-Gold/algernon-js/actions/workflows/run-tests.yml/badge.svg)
+
+
 # Algernon-js
 
 Algernon is a JS library for efficiently generating, solving, and rendering 2D mazes.
