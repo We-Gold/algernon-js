@@ -7,6 +7,7 @@ Algernon is a JS library for efficiently generating, solving, and rendering 2D m
 Found an issue or a performance improvement? Feel free to leave an issue or make a pull request!
 
 ![Algernon Generated Maze](./readme-maze.png)
+
 _Maze generated, solved, and rendered by Algernon-js_
 
 -   [Installation](#installation)
