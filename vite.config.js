@@ -11,6 +11,9 @@ export default defineConfig({
         }
     },
     test: {
-        globals: true
+        globals: true,
+        benchmark: {
+            outputFile: "./bench-results.json"
+        }
     }
 })

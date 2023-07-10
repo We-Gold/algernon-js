@@ -1,4 +1,4 @@
-# Algernon.js
+# Algernon-js
 
 Algernon is a JS library for efficiently generating, solving, and rendering 2D mazes.
 
@@ -201,4 +201,29 @@ const directionBetweenCells = helpers.getDirection(c1, c2)
 
 ## Benchmarks
 
-Benchmark development is in progress right now.
+_Benchmarks were run with a minimum of 50 samples each._
+
+### Generation
+
+| Maze Size | Name         | Mean (ms) | RME  |
+| --------- | ------------ | --------- | ---- |
+| 20 x 20   | Backtracking | 0.1037    | 0.89 |
+| 50 x 50   | Backtracking | 0.5939    | 0.80 |
+| 80 x 80   | Backtracking | 1.4800    | 0.70 |
+| 20 x 20   | Kruskal      | 2.0065    | 1.49 |
+| 50 x 50   | Kruskal      | 44.493    | 3.59 |
+| 80 x 80   | Kruskal      | 325.52    | 2.84 |
+| 20 x 20   | Growing Tree | 0.1283    | 0.39 |
+| 50 x 50   | Growing Tree | 0.8033    | 0.70 |
+| 80 x 80   | Growing Tree | 2.1503    | 2.45 |
+
+### Solving
+
+| Maze Size | Name   | Mean (ms) | RME  |
+| --------- | ------ | --------- | ---- |
+| 20 x 20   | A-Star | 0.1345    | 0.56 |
+| 50 x 50   | A-Star | 0.6027    | 0.46 |
+| 80 x 80   | A-Star | 1.8786    | 0.78 |
+| 20 x 20   | ACO    | 1.3462    | 0.64 |
+| 50 x 50   | ACO    | 22.810    | 0.98 |
+| 80 x 80   | ACO    | 69.850    | 1.67 |
