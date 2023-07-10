@@ -1,7 +1,8 @@
-import { generateMazeBacktracking, solveAStar } from "../lib"
+import { generateMazeBacktracking, solveACO, solveAStar } from "../lib"
 
 const solvers = {
 	"A-Star": solveAStar,
+	"ACO": solveACO,
 }
 
 test.each(Object.entries(solvers))(
@@ -15,7 +16,7 @@ test.each(Object.entries(solvers))(
 
 		expect(solution).not.toHaveLength(0)
 
-        expect(solutionIsContinuous(solution)).toBe(true)
+		expect(solutionIsContinuous(solution)).toBe(true)
 	}
 )
 

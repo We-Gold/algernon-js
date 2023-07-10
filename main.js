@@ -6,6 +6,11 @@ import {
 	convertRawToNodeMatrix,
 	convertRawToNodeGraph,
 	generateMazeGrowingTree,
+	solveACO,
+	serializeRawToBinary,
+	deserializeBinaryToRaw,
+	serializeRawToString,
+	deserializeStringToRaw,
 } from "./lib"
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -44,10 +49,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	console.log(`A*: ${endTime - startTime}ms`)
 
 	startTime = performance.now()
-	renderMazeToCanvas(ctx, 20, finalMaze, solution)
+	const antSolution = solveACO(finalMaze, [0, 0], [19, 19])
 	endTime = performance.now()
 
-	console.log(`Render: ${endTime - startTime}ms`)
+	console.log(`ACO: ${endTime - startTime}ms`)
 
 	startTime = performance.now()
 	const nodeMatrix = convertRawToNodeMatrix(finalMaze)
@@ -60,4 +65,34 @@ document.addEventListener("DOMContentLoaded", () => {
 	endTime = performance.now()
 
 	console.log(`Node Graph Conversion: ${endTime - startTime}ms`)
+
+	startTime = performance.now()
+	const binary = serializeRawToBinary(finalMaze)
+	endTime = performance.now()
+
+	console.log(`Binary Serialization: ${endTime - startTime}ms`)
+
+	startTime = performance.now()
+	const deserialized = deserializeBinaryToRaw(binary)
+	endTime = performance.now()
+
+	console.log(`Binary Deserialization: ${endTime - startTime}ms`)
+
+	startTime = performance.now()
+	const base64 = serializeRawToString(finalMaze)
+	endTime = performance.now()
+
+	console.log(`Base 64 Serialization: ${endTime - startTime}ms`)
+
+	startTime = performance.now()
+	const deserialized64 = deserializeStringToRaw(base64)
+	endTime = performance.now()
+
+	console.log(`Base 64 Deserialization: ${endTime - startTime}ms`)
+
+	startTime = performance.now()
+	renderMazeToCanvas(ctx, 20, deserialized64, antSolution)
+	endTime = performance.now()
+
+	console.log(`Render: ${endTime - startTime}ms`)
 })
