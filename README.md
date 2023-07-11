@@ -209,7 +209,7 @@ const directionBetweenCells = helpers.getDirection(c1, c2)
 
 ## Benchmarks
 
-_Benchmarks were run on an M2 MacBook Air with a minimum of 50 samples each._
+_Benchmarks were run on a M2 MacBook Air with a minimum of 50 samples each._
 
 ### Generation
 
@@ -226,6 +226,8 @@ _Benchmarks were run on an M2 MacBook Air with a minimum of 50 samples each._
 | 80 x 80   | Growing Tree | 2.1503     | 2.45 |
 
 ### Solving
+
+_Backtracking mazes were selected for this benchmark. Performance can vary with different maze types._
 
 | Maze Size | Name   | Mean (ms)  | RME  |
 | --------- | ------ | ---------- | ---- |

@@ -12,13 +12,19 @@ test.each(Object.entries(solvers))(
 	(name, method) => {
 		const [testRows, testCols] = [20, 20]
 
+		const start = [0, 0]
+		const end = [19, 19]
+
 		const maze = generateMazeBacktracking(testRows, testCols)
 
-		const solution = method(maze, [0, 0], [19, 19])
+		const solution = method(maze, start, end)
 
 		expect(solution).not.toHaveLength(0)
 
 		expect(solutionIsContinuous(solution)).toBe(true)
+
+		expect(solution[0]).toEqual(start)
+		expect(solution[solution.length - 1]).toEqual(end)
 	}
 )
 

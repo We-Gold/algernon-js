@@ -1,5 +1,5 @@
 import { bench } from "vitest"
-import { generateMazeBacktracking, generateMazeGrowingTree, solveACO, solveAStar, solveBFS, solveDFS } from "../lib"
+import { generateMazeBacktracking, solveACO, solveAStar, solveBFS, solveDFS } from "../lib"
 
 const solvers = {
 	"A-Star": solveAStar,

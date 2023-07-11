@@ -14,6 +14,7 @@ test("Converted matrix is correct", () => {
 	const [testRows, testCols] = [20, 30]
 
 	const maze = generateMazeBacktracking(testRows, testCols)
+	const unvisitedMaze = maze.map(row => row.map(cell => cell & ~0b10000))
 
 	const matrix = convertRawToNodeMatrix(maze)
 
@@ -25,8 +26,6 @@ test("Converted matrix is correct", () => {
 	expect(raw.length).toBe(testRows)
 	expect(raw[0].length).toBe(testCols)
 
-	const unvisitedMaze = maze.map(row => row.map(cell => cell & ~0b10000))
-
 	expect(raw).toEqual(unvisitedMaze)
 })
 
@@ -34,6 +33,7 @@ test("Converted graph is correct", () => {
 	const [testRows, testCols] = [20, 30]
 
 	const maze = generateMazeBacktracking(testRows, testCols)
+	const unvisitedMaze = maze.map(row => row.map(cell => cell & ~0b10000))
 
 	const graph = convertRawToNodeGraph(maze, [0, 0], [testRows - 1, testCols - 1])
 
@@ -41,8 +41,6 @@ test("Converted graph is correct", () => {
 
 	expect(raw.length).toBe(testRows)
 	expect(raw[0].length).toBe(testCols)
-
-	const unvisitedMaze = maze.map(row => row.map(cell => cell & ~0b10000))
 
 	expect(raw).toEqual(unvisitedMaze)
 })
