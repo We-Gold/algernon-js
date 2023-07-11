@@ -2,7 +2,6 @@
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/We-Gold/algernon-js/issues)
 ![tests](https://github.com/We-Gold/algernon-js/actions/workflows/run-tests.yml/badge.svg)
 
-
 # Algernon-js
 
 Algernon is a JS library for efficiently generating, solving, and rendering 2D mazes.
@@ -150,7 +149,7 @@ const nodeMatrix = convertRawToNodeMatrix(rawMaze)
 const updatedRaw = convertNodeMatrixToRaw(nodeMatrix)
 ```
 
-**Raw -> Node Graph**
+**Raw <-> Node Graph**
 
 ```js
 // `rawMaze` already generated
@@ -163,6 +162,8 @@ const nodeGraph = convertRawToNodeGraph(rawMaze, [0, 0], [row - 1, col - 1])
 // isStart, isEnd, hasNorthWall, hasSouthWall, hasEastWall, hasWestWall
 // and the following references (or null if not present):
 // northNeighbor, southNeighbor, eastNeighbor, westNeighbor
+
+const updatedRaw = convertNodeGraphToRaw(nodeGraph, [0, 0])
 ```
 
 **Raw <-> ArrayBuffer (Binary)**
