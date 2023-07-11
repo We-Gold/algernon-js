@@ -1,9 +1,11 @@
 import { bench } from "vitest"
-import { generateMazeBacktracking, solveACO, solveAStar } from "../lib"
+import { generateMazeBacktracking, generateMazeGrowingTree, solveACO, solveAStar, solveBFS, solveDFS } from "../lib"
 
 const solvers = {
 	"A-Star": solveAStar,
 	ACO: solveACO,
+	"DFS": solveDFS,
+	"BFS": solveBFS
 }
 
 const mazeSizes = [

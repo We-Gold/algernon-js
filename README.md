@@ -91,8 +91,10 @@ For example: `[[0,0],[1,0],[1,1],[1,2],...]`
 
 | Name         | Description                                                                                                | Method       |
 | ------------ | ---------------------------------------------------------------------------------------------------------- | ------------ |
-| A\* (A Star) | Fast Dijkstra's-based solver that uses heuristics. Reasonable general purpose solver.                      | `solveAStar` |
+| A\* (A Star) | Fast Dijkstra's-based solver that uses heuristics. Configurable general purpose solver.                    | `solveAStar` |
 | ACO          | Ant Colony Optimization is not recommended for real-world purposes. It is interesting for experimentation. | `solveACO`   |
+| DFS          | Depth First Search is simple and fast, exploring deep paths and backtracking.                              | `solveDFS`   |
+| BFS          | Breadth First Search is fast, simply exploring the whole maze.                                             | `solveBFS`   |
 
 _Many of these algorithms use heuristics or additional configuration. Check of the JSDoc comments for more info._
 
@@ -207,29 +209,35 @@ const directionBetweenCells = helpers.getDirection(c1, c2)
 
 ## Benchmarks
 
-_Benchmarks were run with a minimum of 50 samples each._
+_Benchmarks were run on an M2 MacBook Air with a minimum of 50 samples each._
 
 ### Generation
 
-| Maze Size | Name         | Mean (ms) | RME  |
-| --------- | ------------ | --------- | ---- |
-| 20 x 20   | Backtracking | 0.1037    | 0.89 |
-| 50 x 50   | Backtracking | 0.5939    | 0.80 |
-| 80 x 80   | Backtracking | 1.4800    | 0.70 |
-| 20 x 20   | Kruskal      | 2.0065    | 1.49 |
-| 50 x 50   | Kruskal      | 44.493    | 3.59 |
-| 80 x 80   | Kruskal      | 325.52    | 2.84 |
-| 20 x 20   | Growing Tree | 0.1283    | 0.39 |
-| 50 x 50   | Growing Tree | 0.8033    | 0.70 |
-| 80 x 80   | Growing Tree | 2.1503    | 2.45 |
+| Maze Size | Name         | Mean (ms)  | RME  |
+| --------- | ------------ | ---------- | ---- |
+| 20 x 20   | Backtracking | **0.1037** | 0.89 |
+| 50 x 50   | Backtracking | **0.5939** | 0.80 |
+| 80 x 80   | Backtracking | **1.4800** | 0.70 |
+| 20 x 20   | Kruskal      | 2.0065     | 1.49 |
+| 50 x 50   | Kruskal      | 44.493     | 3.59 |
+| 80 x 80   | Kruskal      | 325.52     | 2.84 |
+| 20 x 20   | Growing Tree | 0.1283     | 0.39 |
+| 50 x 50   | Growing Tree | 0.8033     | 0.70 |
+| 80 x 80   | Growing Tree | 2.1503     | 2.45 |
 
 ### Solving
 
-| Maze Size | Name   | Mean (ms) | RME  |
-| --------- | ------ | --------- | ---- |
-| 20 x 20   | A-Star | 0.1345    | 0.56 |
-| 50 x 50   | A-Star | 0.6027    | 0.46 |
-| 80 x 80   | A-Star | 1.8786    | 0.78 |
-| 20 x 20   | ACO    | 1.3462    | 0.64 |
-| 50 x 50   | ACO    | 22.810    | 0.98 |
-| 80 x 80   | ACO    | 69.850    | 1.67 |
+| Maze Size | Name   | Mean (ms)  | RME  |
+| --------- | ------ | ---------- | ---- |
+| 20 x 20   | A-Star | 0.1345     | 0.56 |
+| 50 x 50   | A-Star | 0.6027     | 0.46 |
+| 80 x 80   | A-Star | 1.8786     | 0.78 |
+| 20 x 20   | ACO    | 1.3462     | 0.64 |
+| 50 x 50   | ACO    | 22.810     | 0.98 |
+| 80 x 80   | ACO    | 69.850     | 1.67 |
+| 20 x 20   | DFS    | 0.0789     | 1.44 |
+| 50 x 50   | DFS    | 0.5521     | 0.78 |
+| 80 x 80   | DFS    | 2.4901     | 4.92 |
+| 20 x 20   | BFS    | **0.0603** | 0.47 |
+| 50 x 50   | BFS    | **0.3917** | 0.63 |
+| 80 x 80   | BFS    | **1.0897** | 0.88 |

@@ -1,8 +1,10 @@
-import { generateMazeBacktracking, solveACO, solveAStar } from "../lib"
+import { generateMazeBacktracking, solveACO, solveDFS, solveAStar, solveBFS } from "../lib"
 
 const solvers = {
 	"A-Star": solveAStar,
 	"ACO": solveACO,
+	"DFS": solveDFS,
+	"BFS": solveBFS
 }
 
 test.each(Object.entries(solvers))(
