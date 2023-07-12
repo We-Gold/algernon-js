@@ -1,6 +1,10 @@
-[![npm version](https://badge.fury.io/js/algernon-js.svg)](https://badge.fury.io/js/algernon-js)
+![GitHub package.json version (branch)](https://img.shields.io/github/package-json/v/We-Gold/algernon-js/main?label=npm%20version&color=green&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Falgernon-js)
+![npm bundle size](https://img.shields.io/bundlephobia/min/algernon-js?color=green)
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/We-Gold/algernon-js/issues)
 ![tests](https://github.com/We-Gold/algernon-js/actions/workflows/run-tests.yml/badge.svg)
+![ViewCount](https://views.whatilearened.today/views/github/We-Gold/algernon-js.svg)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+![NPM Downloads](https://img.shields.io/npm/dw/algernon-js)
 
 # Algernon-js
 
