@@ -206,6 +206,18 @@ const supersampled = supersampleMaze(rawMaze, 2)
 // Output: sample maze structure but twice the rows and columns
 ```
 
+**Raw -> Filled in walls**
+
+```js
+// `rawMaze` already generated
+
+// Add wall cells instead of booleans (and upscale to a factor of 2)
+const walledMaze = fillWallsWithCells(rawMaze, 1, 0, 2)
+
+// Output: same maze structure but walls are represented by 1
+// and cells by 0, and twice the number of cells
+```
+
 ### Helpers
 
 Internally used helper methods, like `removeWall`, `getAvailableNeighbors`, `getDirection`, and more, are made available through the `helpers` namespace.

@@ -8,6 +8,7 @@ import {
     deserializeStringToRaw,
 	convertRawToNodeGraph,
 	convertNodeGraphToRaw,
+	fillWallsWithCells,
 } from "../lib"
 
 test("Converted matrix is correct", () => {
@@ -67,4 +68,22 @@ test("Serialization and Deserialization works", () => {
 
 	expect(rawFromBase64).toEqual(unvisitedMaze)
 
+})
+
+test("Fill with walls produces correct dimensions", () => {
+	const [testRows, testCols] = [20, 30]
+
+	const maze = generateMazeBacktracking(testRows, testCols)
+
+	const normalSize = fillWallsWithCells(maze, 1, 0)
+
+	expect(normalSize).toHaveLength(testRows + testRows - 1)
+	expect(normalSize[0]).toHaveLength(testCols + testCols - 1)
+
+	const factor = 2
+
+	const largerSize = fillWallsWithCells(maze, 1, 0, factor)
+
+	expect(largerSize).toHaveLength(testRows * factor + testRows - 1)
+	expect(largerSize[0]).toHaveLength(testCols * factor + testCols - 1)
 })

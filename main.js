@@ -11,6 +11,7 @@ import {
 	deserializeBinaryToRaw,
 	serializeRawToString,
 	deserializeStringToRaw,
+	fillWallsWithCells,
 } from "./lib"
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -89,6 +90,10 @@ document.addEventListener("DOMContentLoaded", () => {
 	endTime = performance.now()
 
 	console.log(`Base 64 Deserialization: ${endTime - startTime}ms`)
+
+	const filledMaze = fillWallsWithCells(finalMaze, '#', ' ', 2)
+
+	console.log(filledMaze.map((row) => row.join('')).join('\n'))
 
 	startTime = performance.now()
 	renderMazeToCanvas(ctx, 20, deserialized64, antSolution)
