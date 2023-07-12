@@ -191,6 +191,17 @@ const base64 = serializeRawToString(rawMaze)
 const deserialized = deserializeStringToRaw(base64)
 ```
 
+**Raw -> Supersampled**
+
+```js
+// `rawMaze` already generated
+
+// Supersample the maze at a factor of 2
+const supersampled = supersampleMaze(rawMaze, 2)
+
+// Output: sample maze structure but twice the rows and columns
+```
+
 ### Helpers
 
 Internally used helper methods, like `removeWall`, `getAvailableNeighbors`, `getDirection`, and more, are made available through the `helpers` namespace.
@@ -237,9 +248,9 @@ _Backtracking mazes were selected for this benchmark. Performance can vary with 
 | 20 x 20   | ACO    | 1.3462     | 0.64 |
 | 50 x 50   | ACO    | 22.810     | 0.98 |
 | 80 x 80   | ACO    | 69.850     | 1.67 |
-| 20 x 20   | DFS    | 0.0789     | 1.44 |
-| 50 x 50   | DFS    | 0.5521     | 0.78 |
-| 80 x 80   | DFS    | 2.4901     | 4.92 |
-| 20 x 20   | BFS    | **0.0603** | 0.47 |
-| 50 x 50   | BFS    | **0.3917** | 0.63 |
-| 80 x 80   | BFS    | **1.0897** | 0.88 |
+| 20 x 20   | DFS    | 0.0617     | 0.41 |
+| 50 x 50   | DFS    | 0.2197     | 0.48 |
+| 80 x 80   | DFS    | 0.3464     | 0.60 |
+| 20 x 20   | BFS    | **0.0532** | 0.38 |
+| 50 x 50   | BFS    | **0.1643** | 0.62 |
+| 80 x 80   | BFS    | **0.1504** | 0.37 |
