@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	console.log(filledMaze.map((row) => row.join('')).join('\n'))
 
 	startTime = performance.now()
-	renderMazeToCanvas(ctx, 20, deserialized64, antSolution)
+	renderMazeToCanvas(ctx, 20, deserialized64, solution)
 	endTime = performance.now()
 
 	console.log(`Render: ${endTime - startTime}ms`)
