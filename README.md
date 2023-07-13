@@ -93,13 +93,13 @@ Solutions are simply arrays, with each element as an index in the original `rawM
 
 For example: `[[0,0],[1,0],[1,1],[1,2],...]`
 
-| Name         | Description                                                                                                | Method           |
-| ------------ | ---------------------------------------------------------------------------------------------------------- | ---------------- |
-| A\* (A Star) | Fast Dijkstra's-based solver that uses heuristics. Configurable general purpose solver.                    | `solveAStar`     |
-| ACO          | Ant Colony Optimization is not recommended for real-world purposes. It is interesting for experimentation. | `solveACO`       |
-| DFS          | Depth First Search is simple and fast, exploring deep paths and backtracking.                              | `solveDFS`       |
-| BFS          | Breadth First Search is fast, simply exploring the whole maze.                                             | `solveBFS`       |
-| D\* Lite     | Essentially A\* backwards. Pretty fast, and ideal for mazes that change that require re-planning.          | `solveDStarLite` |
+| Name         | Description                                                                                                                  | Method           |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| A\* (A Star) | Fast Dijkstra's-based solver that uses heuristics. Configurable general purpose solver.                                      | `solveAStar`     |
+| ACO          | Ant Colony Optimization is not recommended for real-world purposes. It is interesting for experimentation.                   | `solveACO`       |
+| DFS          | Depth First Search is simple and fast, exploring deep paths and backtracking.                                                | `solveDFS`       |
+| BFS          | Breadth First Search is fast, simply exploring the whole maze.                                                               | `solveBFS`       |
+| D\* Lite     | Essentially A\* backwards. Pretty fast, and ideal for mazes that change and require re-planning. _See main.js for examples._ | `solveDStarLite` |
 
 _Many of these algorithms use heuristics or additional configuration. Check of the JSDoc comments for more info._
 

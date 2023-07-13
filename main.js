@@ -13,13 +13,18 @@ import {
 	deserializeStringToRaw,
 	fillWallsWithCells,
 	solveDStarLite,
+	structures,
 } from "./lib"
+import { East, North, South, West, cellIs, removeWall } from "./lib/helpers"
 
 document.addEventListener("DOMContentLoaded", () => {
 	const canvas = document.getElementById("demo-canvas")
 	const ctx = canvas.getContext("2d")
 
-	const [rows, cols] = [20, 20]
+	const [rows, cols] = [40, 40]
+
+	const start = [0, 0]
+	const end = [rows - 1, cols - 1]
 
 	let startTime = performance.now()
 	const kruskalMaze = generateMazeKruskal(rows, cols)
@@ -41,23 +46,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	const finalMaze = growingTreeMaze
 
+	const originalMaze = structuredClone(finalMaze)
+
 	// When solving, the hypot (default) heurisitic works well for
 	// backtracking generated mazes, but the grid heuristic works
 	// better for kruskal type mazes
 	startTime = performance.now()
-	const solution = solveAStar(finalMaze, [0, 0], [19, 19])
+	const solution = solveAStar(finalMaze, start, end)
 	endTime = performance.now()
 
 	console.log(`A*: ${endTime - startTime}ms`)
 
 	startTime = performance.now()
-	const antSolution = solveACO(finalMaze, [0, 0], [19, 19])
+	const antSolution = solveACO(finalMaze, start, end)
 	endTime = performance.now()
 
 	console.log(`ACO: ${endTime - startTime}ms`)
 
 	startTime = performance.now()
-	const dStarSolution = solveDStarLite(finalMaze, [0, 0], [19, 19])
+	const {path: dStarSolution, solve} = solveDStarLite(finalMaze, start, end, true)
 	endTime = performance.now()
 
 	console.log(`D* Lite: ${endTime - startTime}ms`)
@@ -69,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	console.log(`Node Matrix Conversion: ${endTime - startTime}ms`)
 
 	startTime = performance.now()
-	const nodeGraph = convertRawToNodeGraph(finalMaze, [0, 0], [19, 19])
+	const nodeGraph = convertRawToNodeGraph(finalMaze, start, end)
 	endTime = performance.now()
 
 	console.log(`Node Graph Conversion: ${endTime - startTime}ms`)
@@ -104,8 +111,51 @@ document.addEventListener("DOMContentLoaded", () => {
 	// console.log(filledMaze.map((row) => row.join('')).join('\n'))
 
 	startTime = performance.now()
-	renderMazeToCanvas(ctx, 20, deserialized64, dStarSolution)
+	renderMazeToCanvas(ctx, 10, originalMaze, dStarSolution)
 	endTime = performance.now()
 
 	console.log(`Render: ${endTime - startTime}ms`)
+
+	console.log(structures)
+
+	// Render the updated d star path
+	const canvas2 = document.getElementById("demo-canvas-2")
+	const ctx2 = canvas2.getContext("2d")
+
+	let updatedDStarSolution
+
+	const updatedCellIndices = []
+	const originalCellValues = []
+
+	for (let iterations = 0; iterations < 10; iterations++) {
+		// Randomly remove walls in the maze 
+		for (let i = 1; i < finalMaze.length - 1; i++) {
+			for (let j = 1; j < finalMaze[0].length - 1; j++) {
+				if (Math.random() > 0.95) {
+					updatedCellIndices.push([i, j])
+
+					const originalValue = finalMaze[i][j]
+
+					originalCellValues.push(originalValue)
+
+					if (cellIs(North, originalValue)) {
+						removeWall([i, j], [i - 1, j], finalMaze)
+					}
+					if (cellIs(South, originalValue)) {
+						removeWall([i, j], [i + 1, j], finalMaze)
+					}
+					if (cellIs(East, originalValue)) {
+						removeWall([i, j], [i, j + 1], finalMaze)
+					}
+					if (cellIs(West, originalValue)) {
+						removeWall([i, j], [i, j - 1], finalMaze)
+					}
+				}
+			}
+		}
+
+		updatedDStarSolution = solve(start, {updatedCellIndices, originalCellValues})
+	}
+
+	renderMazeToCanvas(ctx2, 10, finalMaze, updatedDStarSolution)
 })
