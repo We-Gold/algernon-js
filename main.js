@@ -12,6 +12,7 @@ import {
 	serializeRawToString,
 	deserializeStringToRaw,
 	fillWallsWithCells,
+	solveDStarLite,
 } from "./lib"
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -56,6 +57,12 @@ document.addEventListener("DOMContentLoaded", () => {
 	console.log(`ACO: ${endTime - startTime}ms`)
 
 	startTime = performance.now()
+	const dStarSolution = solveDStarLite(finalMaze, [0, 0], [19, 19])
+	endTime = performance.now()
+
+	console.log(`D* Lite: ${endTime - startTime}ms`)
+
+	startTime = performance.now()
 	const nodeMatrix = convertRawToNodeMatrix(finalMaze)
 	endTime = performance.now()
 
@@ -93,10 +100,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	const filledMaze = fillWallsWithCells(finalMaze, '#', ' ', 2)
 
-	console.log(filledMaze.map((row) => row.join('')).join('\n'))
+	// Use this to test the filled maze
+	// console.log(filledMaze.map((row) => row.join('')).join('\n'))
 
 	startTime = performance.now()
-	renderMazeToCanvas(ctx, 20, deserialized64, solution)
+	renderMazeToCanvas(ctx, 20, deserialized64, dStarSolution)
 	endTime = performance.now()
 
 	console.log(`Render: ${endTime - startTime}ms`)

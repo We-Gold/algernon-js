@@ -93,12 +93,13 @@ Solutions are simply arrays, with each element as an index in the original `rawM
 
 For example: `[[0,0],[1,0],[1,1],[1,2],...]`
 
-| Name         | Description                                                                                                | Method       |
-| ------------ | ---------------------------------------------------------------------------------------------------------- | ------------ |
-| A\* (A Star) | Fast Dijkstra's-based solver that uses heuristics. Configurable general purpose solver.                    | `solveAStar` |
-| ACO          | Ant Colony Optimization is not recommended for real-world purposes. It is interesting for experimentation. | `solveACO`   |
-| DFS          | Depth First Search is simple and fast, exploring deep paths and backtracking.                              | `solveDFS`   |
-| BFS          | Breadth First Search is fast, simply exploring the whole maze.                                             | `solveBFS`   |
+| Name         | Description                                                                                                | Method           |
+| ------------ | ---------------------------------------------------------------------------------------------------------- | ---------------- |
+| A\* (A Star) | Fast Dijkstra's-based solver that uses heuristics. Configurable general purpose solver.                    | `solveAStar`     |
+| ACO          | Ant Colony Optimization is not recommended for real-world purposes. It is interesting for experimentation. | `solveACO`       |
+| DFS          | Depth First Search is simple and fast, exploring deep paths and backtracking.                              | `solveDFS`       |
+| BFS          | Breadth First Search is fast, simply exploring the whole maze.                                             | `solveBFS`       |
+| D\* Lite     | Essentially A\* backwards. Pretty fast, and ideal for mazes that change that require re-planning.          | `solveDStarLite` |
 
 _Many of these algorithms use heuristics or additional configuration. Check of the JSDoc comments for more info._
 
@@ -256,17 +257,20 @@ _Benchmarks were run on a M2 MacBook Air with a minimum of 50 samples each._
 
 _Backtracking mazes were selected for this benchmark. Performance can vary with different maze types._
 
-| Maze Size | Name   | Mean (ms)  | RME  |
-| --------- | ------ | ---------- | ---- |
-| 20 x 20   | A-Star | **0.0173** | 1.13 |
-| 50 x 50   | A-Star | **0.1551** | 0.81 |
-| 80 x 80   | A-Star | 0.1676     | 0.78 |
-| 20 x 20   | ACO    | 1.3462     | 0.64 |
-| 50 x 50   | ACO    | 22.810     | 0.98 |
-| 80 x 80   | ACO    | 69.850     | 1.67 |
-| 20 x 20   | DFS    | 0.0617     | 0.41 |
-| 50 x 50   | DFS    | 0.2197     | 0.48 |
-| 80 x 80   | DFS    | 0.3464     | 0.60 |
-| 20 x 20   | BFS    | 0.0532     | 0.38 |
-| 50 x 50   | BFS    | 0.1643     | 0.62 |
-| 80 x 80   | BFS    | **0.1504** | 0.37 |
+| Maze Size | Name     | Mean (ms)  | RME  |
+| --------- | -------- | ---------- | ---- |
+| 20 x 20   | A-Star   | **0.0173** | 1.13 |
+| 50 x 50   | A-Star   | **0.1551** | 0.81 |
+| 80 x 80   | A-Star   | 0.1676     | 0.78 |
+| 20 x 20   | ACO      | 1.3462     | 0.64 |
+| 50 x 50   | ACO      | 22.810     | 0.98 |
+| 80 x 80   | ACO      | 69.850     | 1.67 |
+| 20 x 20   | DFS      | 0.0617     | 0.41 |
+| 50 x 50   | DFS      | 0.2197     | 0.48 |
+| 80 x 80   | DFS      | 0.3464     | 0.60 |
+| 20 x 20   | BFS      | 0.0532     | 0.38 |
+| 50 x 50   | BFS      | 0.1643     | 0.62 |
+| 80 x 80   | BFS      | **0.1504** | 0.37 |
+| 20 x 20   | D\* Lite | 0.1215     | 1.06 |
+| 50 x 50   | D\* Lite | 0.5553     | 0.64 |
+| 80 x 80   | D\* Lite | 0.8571     | 1.71 |
