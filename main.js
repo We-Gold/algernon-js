@@ -13,7 +13,6 @@ import {
 	deserializeStringToRaw,
 	fillWallsWithCells,
 	solveDStarLite,
-	structures,
 } from "./lib"
 import { East, North, South, West, cellIs, removeWall } from "./lib/helpers"
 
@@ -115,8 +114,6 @@ document.addEventListener("DOMContentLoaded", () => {
 	endTime = performance.now()
 
 	console.log(`Render: ${endTime - startTime}ms`)
-
-	console.log(structures)
 
 	// Render the updated d star path
 	const canvas2 = document.getElementById("demo-canvas-2")
