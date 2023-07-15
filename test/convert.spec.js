@@ -1,3 +1,4 @@
+import { expect } from "vitest"
 import {
 	generateMazeBacktracking,
 	convertRawToNodeMatrix,
@@ -8,8 +9,12 @@ import {
     deserializeStringToRaw,
 	convertRawToNodeGraph,
 	convertNodeGraphToRaw,
-	fillWallsWithCells,
+	convertRawToGridFormat,
+	convertGridToRawFormat,
+	convertRawToGridPoint,
+	convertGridToRawPoint,
 } from "../lib"
+import { Visited } from "../lib/helpers"
 
 test("Converted matrix is correct", () => {
 	const [testRows, testCols] = [20, 30]
@@ -70,20 +75,36 @@ test("Serialization and Deserialization works", () => {
 
 })
 
-test("Fill with walls produces correct dimensions", () => {
+test("Conversion to and from Grid works correctly", () => {
 	const [testRows, testCols] = [20, 30]
 
 	const maze = generateMazeBacktracking(testRows, testCols)
 
-	const normalSize = fillWallsWithCells(maze, 1, 0)
+	const normalSize = convertRawToGridFormat(maze)
 
 	expect(normalSize).toHaveLength(testRows + testRows - 1)
 	expect(normalSize[0]).toHaveLength(testCols + testCols - 1)
 
 	const factor = 2
 
-	const largerSize = fillWallsWithCells(maze, 1, 0, factor)
+	const largerSize = convertRawToGridFormat(maze, factor)
 
 	expect(largerSize).toHaveLength(testRows * factor + testRows - 1)
 	expect(largerSize[0]).toHaveLength(testCols * factor + testCols - 1)
+})
+
+test("Converting points works correctly", () => {
+	const point = [2, 2]
+
+	const gridPoint = convertRawToGridPoint(point)
+	const originalPoint = convertGridToRawPoint(gridPoint)
+
+	expect(point).toEqual(originalPoint)
+
+	const point2 = [2, 2]
+
+	const gridPoint2 = convertRawToGridPoint(point2, 2)
+	const originalPoint2 = convertGridToRawPoint(gridPoint2, 2)
+
+	expect(point2).toEqual(originalPoint2)
 })

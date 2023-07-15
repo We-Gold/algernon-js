@@ -207,16 +207,26 @@ const supersampled = supersampleMaze(rawMaze, 2)
 // Output: sample maze structure but twice the rows and columns
 ```
 
-**Raw -> Filled in walls**
+**Raw <-> Grid Maze Format**
 
 ```js
 // `rawMaze` already generated
 
-// Add wall cells instead of booleans (and upscale to a factor of 2)
-const walledMaze = fillWallsWithCells(rawMaze, 1, 0, 2)
+// Replace wall properties with open/wall cells (and upscale to a factor of 2)
+const gridMaze = convertRawToGridFormat(rawMaze, 2)
 
-// Output: same maze structure but walls are represented by 1
-// and cells by 0, and twice the number of cells
+// Output: same maze structure but walls are represented by true
+// and cells by false, and a different number of cells
+
+// Convert back to Raw (and tell it the upscale factor)
+const rawMaze2 = convertGridToRawFormat(gridMaze, 2)
+
+// Output: the original `rawMaze`
+
+// Convert points from raw to grid and back
+const rawPoint = [2, 2]
+const gridPoint = convertRawToGridPoint(rawPoint)
+const originalPoint = convertGridToRawPoint(gridPoint)
 ```
 
 **Raw -> Raw (Braided)**
