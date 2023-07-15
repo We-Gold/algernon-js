@@ -13,6 +13,7 @@ import {
 	deserializeStringToRaw,
 	fillWallsWithCells,
 	solveDStarLite,
+	braidMaze,
 } from "./lib"
 import { East, North, South, West, cellIs, removeWall } from "./lib/helpers"
 
@@ -43,9 +44,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	console.log(`Growing Tree: ${endTime - startTime}ms`)
 
-	const finalMaze = growingTreeMaze
+	const finalMaze = backtrackMaze
 
 	const originalMaze = structuredClone(finalMaze)
+	
+	// Remove dead ends with given probability
+	// braidMaze(originalMaze, 1)
 
 	// When solving, the hypot (default) heurisitic works well for
 	// backtracking generated mazes, but the grid heuristic works

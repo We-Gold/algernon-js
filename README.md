@@ -219,6 +219,18 @@ const walledMaze = fillWallsWithCells(rawMaze, 1, 0, 2)
 // and cells by 0, and twice the number of cells
 ```
 
+**Raw -> Raw (Braided)**
+
+```js
+// `rawMaze` already generated
+
+// Remove dead-ends with the given probability
+braidMaze(rawMaze, 0.5)
+
+// Output: an in-place modification of the original maze,
+// with walls removed to prevent dead-ends.
+```
+
 ### Helpers
 
 Internally used helper methods, like `removeWall`, `getAvailableNeighbors`, `getDirection`, and more, are made available through the `helpers` namespace.

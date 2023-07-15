@@ -2,7 +2,7 @@
 	"name": "algernon-js",
 	"author": "Weaver Goldman <we.goldm@gmail.com>",
 	"description": "Algernon is a JS library for efficiently generating, solving, and rendering mazes.",
-	"version": "0.2.4",
+	"version": "0.2.5",
 	"type": "module",
 	"license": "MIT",
 	"repository": {
@@ -20,7 +20,11 @@
 		"p5.js",
 		"html-canvas",
 		"a-star",
-		"ant-colony-optimization"
+		"ant-colony-optimization",
+		"d-star-lite",
+		"dfs",
+		"bfs",
+		"labyrinth"
 	],
 	"files": [
 		"dist"
