@@ -257,6 +257,12 @@ const directionBetweenCells = helpers.getDirection(c1, c2)
 // directionBetweenCells: 0b0100 or South
 ```
 
+### Data Structures
+
+Internally used data structures are now available as well.
+
+The two currently available are: `createDisjointSet` and `createMinHeap`.
+
 ## Benchmarks
 
 _Benchmarks were run on a M2 MacBook Air with a minimum of 50 samples each._
