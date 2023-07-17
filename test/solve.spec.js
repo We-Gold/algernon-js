@@ -1,10 +1,10 @@
-import { generateMazeBacktracking, solveACO, solveDFS, solveAStar, solveBFS, solveDStarLite } from "../lib"
+import { generateBacktrackingRaw, solveACO, solveDFSRaw, solveAStarRaw, solveBFSRaw, solveDStarLite } from "../lib"
 
 const solvers = {
-	"A-Star": solveAStar,
+	"A-Star": solveAStarRaw,
 	"ACO": solveACO,
-	"DFS": solveDFS,
-	"BFS": solveBFS,
+	"DFS": solveDFSRaw,
+	"BFS": solveBFSRaw,
 	"D-Star-Lite": solveDStarLite
 }
 
@@ -16,7 +16,7 @@ test.each(Object.entries(solvers))(
 		const start = [0, 0]
 		const end = [19, 19]
 
-		const maze = generateMazeBacktracking(testRows, testCols)
+		const maze = generateBacktrackingRaw(testRows, testCols)
 
 		const solution = method(maze, start, end)
 

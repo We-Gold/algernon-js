@@ -1,10 +1,10 @@
 import { bench } from "vitest"
-import { generateMazeBacktracking, generateMazeGrowingTree, generateMazeKruskal } from "../lib"
+import { generateGrowingTreeRaw, generateMazeBacktracking, generateKruskalRaw } from "../lib"
 
 const generators = {
     "Backtracking": generateMazeBacktracking,
-    "Kruskal": generateMazeKruskal,
-    "Growing Tree": generateMazeGrowingTree
+    "Kruskal": generateKruskalRaw,
+    "Growing Tree": generateGrowingTreeRaw
 }
 
 const mazeSizes = [

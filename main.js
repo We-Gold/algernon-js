@@ -1,19 +1,30 @@
 import {
-	generateMazeBacktracking,
-	generateMazeKruskal,
-	solveAStar,
-	renderMazeToCanvas,
+	generateBacktrackingRaw,
+	generateKruskalRaw,
+	solveAStarRaw,
+	renderRawMazeToCanvas,
 	convertRawToNodeMatrix,
 	convertRawToNodeGraph,
-	generateMazeGrowingTree,
+	generateGrowingTreeRaw,
 	solveACO,
 	serializeRawToBinary,
 	deserializeBinaryToRaw,
 	serializeRawToString,
 	deserializeStringToRaw,
-	fillWallsWithCells,
 	solveDStarLite,
 	braidMaze,
+	generateBacktrackingGrid,
+	renderGridMazeToCanvas,
+	convertRawToGridFormat,
+	generateGrowingTreeGrid,
+	generateKruskalGrid,
+	solveDFSGrid,
+	solveBFSGrid,
+	solveAStarGrid,
+	braidMazeGrid,
+	supersampleMazeGrid,
+	degradeGrid,
+	fillGrid,
 } from "./lib"
 import { East, North, South, West, cellIs, removeWall } from "./lib/helpers"
 
@@ -27,19 +38,19 @@ document.addEventListener("DOMContentLoaded", () => {
 	const end = [rows - 1, cols - 1]
 
 	let startTime = performance.now()
-	const kruskalMaze = generateMazeKruskal(rows, cols)
+	const kruskalMaze = generateKruskalRaw(rows, cols)
 	let endTime = performance.now()
 
 	console.log(`Kruskal: ${endTime - startTime}ms`)
 
 	startTime = performance.now()
-	const backtrackMaze = generateMazeBacktracking(rows, cols)
+	const backtrackMaze = generateBacktrackingRaw(rows, cols)
 	endTime = performance.now()
 
 	console.log(`Backtracking: ${endTime - startTime}ms`)
 
 	startTime = performance.now()
-	const growingTreeMaze = generateMazeGrowingTree(rows, cols)
+	const growingTreeMaze = generateGrowingTreeRaw(rows, cols)
 	endTime = performance.now()
 
 	console.log(`Growing Tree: ${endTime - startTime}ms`)
@@ -55,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	// backtracking generated mazes, but the grid heuristic works
 	// better for kruskal type mazes
 	startTime = performance.now()
-	const solution = solveAStar(finalMaze, start, end)
+	const solution = solveAStarRaw(finalMaze, start, end)
 	endTime = performance.now()
 
 	console.log(`A*: ${endTime - startTime}ms`)
@@ -108,13 +119,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	console.log(`Base 64 Deserialization: ${endTime - startTime}ms`)
 
-	const filledMaze = fillWallsWithCells(finalMaze, '#', ' ', 2)
+	const filledMaze = convertRawToGridFormat(finalMaze, 2)
 
 	// Use this to test the filled maze
 	// console.log(filledMaze.map((row) => row.join('')).join('\n'))
 
 	startTime = performance.now()
-	renderMazeToCanvas(ctx, 10, originalMaze, dStarSolution)
+	renderRawMazeToCanvas(ctx, 10, originalMaze, dStarSolution)
 	endTime = performance.now()
 
 	console.log(`Render: ${endTime - startTime}ms`)
@@ -158,5 +169,26 @@ document.addEventListener("DOMContentLoaded", () => {
 		updatedDStarSolution = solve(start, {updatedCellIndices, originalCellValues})
 	}
 
-	renderMazeToCanvas(ctx2, 10, finalMaze, updatedDStarSolution)
+	// renderRawMazeToCanvas(ctx2, 10, finalMaze, updatedDStarSolution)
+
+	const [gridRows, gridCols] = [39, 39]
+
+	const gridMaze = generateBacktrackingGrid(gridRows, gridCols, [0, 0])
+	// const gridMaze = generateGrowingTreeGrid(gridRows, gridCols)
+	// const gridMaze = generateKruskalGrid(gridRows, gridCols)
+
+	const factor = 2
+
+	braidMazeGrid(gridMaze, 0.5)
+
+	const superGrid = supersampleMazeGrid(gridMaze, factor)
+
+	degradeGrid(superGrid, 0.3)
+	fillGrid(superGrid, 0.05)
+
+	// const gridSolution = solveDFSGrid(gridMaze, [0, 0], [gridRows - 1, gridCols - 1])
+	// const gridSolution = solveBFSGrid(gridMaze, [0, 0], [gridRows - 1, gridCols - 1])
+	const gridSolution = solveAStarGrid(superGrid, [0, 0], [gridRows * factor - 1, gridCols * factor - 1])
+
+	renderGridMazeToCanvas(ctx2, 400 / (gridRows * factor), superGrid, gridSolution)
 })

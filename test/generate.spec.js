@@ -1,9 +1,9 @@
-import { generateMazeBacktracking, generateMazeGrowingTree, generateMazeKruskal, solveAStar } from "../lib"
+import { generateBacktrackingRaw, generateGrowingTreeRaw, generateKruskalRaw, solveAStarRaw } from "../lib"
 
 const generators = {
-    "Backtracking": generateMazeBacktracking,
-    "Kruskal": generateMazeKruskal,
-    "Growing Tree": generateMazeGrowingTree
+    "Backtracking": generateBacktrackingRaw,
+    "Kruskal": generateKruskalRaw,
+    "Growing Tree": generateGrowingTreeRaw
 }
 
 test.each(Object.entries(generators))("%s maze has correct dimensions", (name, method) => {
@@ -37,7 +37,7 @@ test.each(Object.entries(generators))("%s maze is solvable", (name, method) => {
 
     const maze = method(testRows, testCols)
 
-    const solution = solveAStar(maze, [0, 0], [19, 19])
+    const solution = solveAStarRaw(maze, [0, 0], [19, 19])
 
     expect(solution).not.toHaveLength(0)
 })

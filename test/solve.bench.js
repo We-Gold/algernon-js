@@ -1,11 +1,11 @@
 import { bench } from "vitest"
-import { generateMazeBacktracking, solveACO, solveAStar, solveBFS, solveDFS, solveDStarLite } from "../lib"
+import { generateBacktrackingRaw, solveACO, solveAStarRaw, solveBFSRaw, solveDFSRaw, solveDStarLite } from "../lib"
 
 const solvers = {
-	"A-Star": solveAStar,
+	"A-Star": solveAStarRaw,
 	"ACO": solveACO,
-	"DFS": solveDFS,
-	"BFS": solveBFS,
+	"DFS": solveDFSRaw,
+	"BFS": solveBFSRaw,
 	"D-Star-Lite": solveDStarLite
 }
 
@@ -20,7 +20,7 @@ for (const [name, method] of Object.entries(solvers)) {
 	for (let mazeIndex = 0; mazeIndex < mazeSizes.length; mazeIndex++) {
         const [rows, cols] = mazeSizes[mazeIndex]
 
-        const maze = generateMazeBacktracking(rows, cols)
+        const maze = generateBacktrackingRaw(rows, cols)
 
 		bench(`Using ${name} on ${rows}x${cols}`, () => {
             method(maze, [0, 0], [rows - 1, cols - 1])

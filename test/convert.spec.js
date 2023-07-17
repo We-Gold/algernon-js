@@ -1,6 +1,5 @@
 import { expect } from "vitest"
 import {
-	generateMazeBacktracking,
 	convertRawToNodeMatrix,
 	convertNodeMatrixToRaw,
 	serializeRawToBinary,
@@ -13,13 +12,14 @@ import {
 	convertGridToRawFormat,
 	convertRawToGridPoint,
 	convertGridToRawPoint,
+	generateBacktrackingRaw,
 } from "../lib"
 import { Visited } from "../lib/helpers"
 
 test("Converted matrix is correct", () => {
 	const [testRows, testCols] = [20, 30]
 
-	const maze = generateMazeBacktracking(testRows, testCols)
+	const maze = generateBacktrackingRaw(testRows, testCols)
 	const unvisitedMaze = maze.map(row => row.map(cell => cell & ~0b10000))
 
 	const matrix = convertRawToNodeMatrix(maze)
@@ -38,7 +38,7 @@ test("Converted matrix is correct", () => {
 test("Converted graph is correct", () => {
 	const [testRows, testCols] = [20, 30]
 
-	const maze = generateMazeBacktracking(testRows, testCols)
+	const maze = generateBacktrackingRaw(testRows, testCols)
 	const unvisitedMaze = maze.map(row => row.map(cell => cell & ~0b10000))
 
 	const graph = convertRawToNodeGraph(maze, [0, 0], [testRows - 1, testCols - 1])
@@ -54,7 +54,7 @@ test("Converted graph is correct", () => {
 test("Serialization and Deserialization works", () => {
 	const [testRows, testCols] = [20, 30]
 
-	const maze = generateMazeBacktracking(testRows, testCols)
+	const maze = generateBacktrackingRaw(testRows, testCols)
 	const unvisitedMaze = maze.map(row => row.map(cell => cell & ~0b10000))
 
 	const binary = serializeRawToBinary(maze)
@@ -78,7 +78,7 @@ test("Serialization and Deserialization works", () => {
 test("Conversion to and from Grid works correctly", () => {
 	const [testRows, testCols] = [20, 30]
 
-	const maze = generateMazeBacktracking(testRows, testCols)
+	const maze = generateBacktrackingRaw(testRows, testCols)
 
 	const normalSize = convertRawToGridFormat(maze)
 
