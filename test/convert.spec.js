@@ -14,7 +14,6 @@ import {
 	convertGridToRawPoint,
 	generateBacktrackingRaw,
 } from "../lib"
-import { Visited } from "../lib/helpers"
 
 test("Converted matrix is correct", () => {
 	const [testRows, testCols] = [20, 30]
