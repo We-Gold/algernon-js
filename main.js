@@ -25,6 +25,7 @@ import {
 	supersampleMazeGrid,
 	degradeGrid,
 	fillGrid,
+	supersampleMazeGridSparse,
 } from "./lib"
 import { East, North, South, West, cellIs, removeWall } from "./lib/helpers"
 
@@ -119,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	console.log(`Base 64 Deserialization: ${endTime - startTime}ms`)
 
-	const filledMaze = convertRawToGridFormat(finalMaze, 2)
+	// const filledMaze = convertRawToGridFormat(finalMaze, 2)
 
 	// Use this to test the filled maze
 	// console.log(filledMaze.map((row) => row.join('')).join('\n'))
@@ -181,14 +182,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	braidMazeGrid(gridMaze, 0.5)
 
-	const superGrid = supersampleMazeGrid(gridMaze, factor)
+	// const superGrid = supersampleMazeGrid(gridMaze, factor)
+	const superGrid = supersampleMazeGridSparse(gridMaze, factor)
 
 	degradeGrid(superGrid, 0.3)
 	fillGrid(superGrid, 0.05)
 
 	// const gridSolution = solveDFSGrid(gridMaze, [0, 0], [gridRows - 1, gridCols - 1])
 	// const gridSolution = solveBFSGrid(gridMaze, [0, 0], [gridRows - 1, gridCols - 1])
-	const gridSolution = solveAStarGrid(superGrid, [0, 0], [gridRows * factor - 1, gridCols * factor - 1])
+	const gridSolution = solveAStarGrid(superGrid, [0, 0], [superGrid.length - 1, superGrid[0].length - 1])
 
-	renderGridMazeToCanvas(ctx2, 400 / (gridRows * factor), superGrid, gridSolution)
+	renderGridMazeToCanvas(ctx2, 400 / (superGrid.length), superGrid, gridSolution)
 })
